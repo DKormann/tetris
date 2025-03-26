@@ -3,8 +3,8 @@ export {}
 const container = document.createElement("canvas")
 
 const s = 50
-const x = 7
-const y = 12
+const x = 8
+const y = 14
 
 container.width = x * s
 container.height = y * s
@@ -69,6 +69,10 @@ function update(){
     draw(getPieceTile())
     pos = {x: 0, y: 0}
     piece = pieces[Math.floor(Math.random() * pieces.length)]
+    if (!check(getPieceTile())) {
+      clearInterval(loopid)
+      alert("Game Over")
+    }
     console.log(piece);
     
   }
@@ -95,7 +99,7 @@ function move(x:number, y:number){
   return res
 }
 
-setInterval(update, 400)
+const loopid =  setInterval(update, 400)
 
 function rotate(){
   const prev = piece
